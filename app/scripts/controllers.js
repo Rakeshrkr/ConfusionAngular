@@ -32,23 +32,13 @@ $scope.toggleDetails = function() {
     $scope.showDetails = !$scope.showDetails;
 };
 }])
-.controller('dishCommnetController',['$scope',function($scope){
-    $scope.dishCommnet ={name:"",rating:"",comment:""};
-    
-    
-    
-    
-}])
+
 
 .controller('ContactController', ['$scope', function($scope) {
             $scope.feedback = {mychannel:"", firstName:"", lastName:"", agree:false, email:"" };
                         var channels = [{value:"tel", label:"Tel."}, {value:"Email",label:"Email"}];
                         $scope.channels = channels;
             $scope.invalidChannelSelection = false;
-                                }])
-.controller('DishCommentController', ['$scope', function($scope) {
-            $scope.dishComment = {cname:"abc", crating:"", ccomment:"xyz" };
-                       
                                 }])
 
 .controller('FeedbackController', ['$scope', function($scope) {
@@ -72,12 +62,11 @@ $scope.toggleDetails = function() {
             };
         }])
 
-   .controller('dishDetailController',['$scope','menuFactory', function($scope,menuFactory) {
-           
-             $scope.dish= menuFactory.getDish(3);
-            
-            
-        }])
+   .controller('DishDetailController', ['$scope', '$routeParams', 'menuFactory', function($scope, $routeParams, menuFactory)
+        {
+         var dish= menuFactory.getDish(parseInt($routeParams.id,10));
+            $scope.dish = dish;
+                    }])
 
  .controller('dishCommentController',['$scope',function($scope){
             var dishComment = {
